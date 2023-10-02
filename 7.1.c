@@ -1,28 +1,46 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-int pedirValores(int dividendo,int divisor){
-    printf("Ingrese el numero a dividir");
-    scanf("%d", &dividendo);
-    printf("Ingrese el numero que actuara como divisor");
-    scanf("%d", &divisor);
-}
-int hacerCalculo(){};
-struct ini{
+struct ini
+{
     int divisor;
     int dividendo;
 };
 
-struct fin{
+struct fin
+{
     int resto;
     int cociente;
 };
 
-int main(){
-    struct ini aux;
-
-    pedirValores(aux.dividendo,aux.divisor);
-    printf("%d \n %d", aux.dividendo, aux.divisor);
-    hacerCalculo();
+struct pedirValores()
+{
+    struct ini valor;
+    printf("Ingrese el numero a dividir:");
+    scanf("%d", &valor.dividendo);
+    printf("Ingrese el numero que actuara como divisor:");
+    scanf("%d", &valor.divisor);
+    return valor;
 }
+
+int hacerCalculo(struct ini valores, struct fin *resultado)
+{
+    if(valor.divisor==0){
+        
+    }
+}
+
+int main()
+{
+    struct ini valores = pedirValores();
+    struct fin resultado;
+
+    int error = hacerCalculo(valores, &resultado);
+
+    if (error == 0){
+        printf("Cociente:%d\n", resultado.cociente);
+        printf("Resto   :%d\n\n", resultado.resto);
+    }
+}
+
+
