@@ -45,7 +45,8 @@ registro_t* IngresoGuardia(registro_t *p, int* n, int i){
     printf("Ingrese el año de visita del paciente..............:");
     scanf(" %d", &(p+i)->fechaVisita.anio);
     printf("Ingrese el tiempo de espera del paciente en minutos:");
-    scanf(" %d", &(p+i)->tiempoEspera);}
+    scanf(" %d", &(p+i)->tiempoEspera);
+    
 }
 
 
