@@ -13,7 +13,7 @@ struct fin
     int cociente;
 };
 
-struct pedirValores()
+struct ini pedirValores()
 {
     struct ini valor;
     printf("Ingrese el numero a dividir:");
@@ -25,9 +25,13 @@ struct pedirValores()
 
 int hacerCalculo(struct ini valores, struct fin *resultado)
 {
-    if(valor.divisor==0){
-        
+    if(valores.divisor==0){
+        printf("No se puede dividir por cero.\n");
+        return 1;
     }
+    resultado->cociente = valores.dividendo / valores.divisor;
+    resultado->resto = valores.dividendo % valores.divisor;
+    return 0;
 }
 
 int main()
@@ -41,6 +45,7 @@ int main()
         printf("Cociente:%d\n", resultado.cociente);
         printf("Resto   :%d\n\n", resultado.resto);
     }
+    return 0;
 }
 
 
