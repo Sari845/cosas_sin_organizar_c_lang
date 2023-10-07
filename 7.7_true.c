@@ -13,21 +13,33 @@ void carga(struct guarda *dato)
     printf("Ingrese el legajo del estudiante  :");
     scanf(" %ld", &dato->legajo);
     printf("Ingrese el nombre del estudiante  :");
-    scanf("%s", &dato->nombre);
+    scanf("%s", dato->nombre);
     printf("Ingrese el apellido del estudiante:");
-    scanf("%s", &dato->apellido);
+    scanf("%s", dato->apellido);
+}
+
+void ordenamiento(struct guarda *dato){
+    struct guarda aux;
+
 }
 
 int main()
 {
     struct guarda *datos;
     int i = 0;
-    datos = malloc(sizeof(struct guarda));
+    int j = 1;
+    size_t a;
+    datos = (struct guarda *)malloc(sizeof(struct guarda));
     do
     {
         carga(&datos[i]);
+        a = sizeof(struct guarda) * (j + 1);
+        printf("\n%ld\n", (long)a);
+        datos = (struct guarda *)realloc(datos, a);
         i++;
+        j++;
     } while (datos[i - 1].legajo != 0);
+    ordenamiento(datos);
     for (int j = 0; j < i - 1; j++)
     {
         printf("Legajo: %ld\n", datos[j].legajo);

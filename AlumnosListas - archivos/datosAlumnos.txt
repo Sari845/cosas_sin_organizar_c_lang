@@ -1,0 +1,1 @@
+Pablo,Sanchez,1,10.0,10.0,10.0,Franco,Donadio,2,10.0,10.0,10.0,Lucas,Sasson,3,10.0,10.0,10.0,Ivan,Impollino,4,10.0,10.0,10.0,Juan,Manuel,5,7.8,9.0,8.0
