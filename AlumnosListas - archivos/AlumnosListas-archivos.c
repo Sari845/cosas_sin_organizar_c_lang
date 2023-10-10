@@ -75,6 +75,10 @@ void buscar(char search, struct nodo *INI){
     struct nodo *aux;
     aux = INI;
     int loop = 1;
+    if(INI == NULL){
+        printf("\nNo hay alumnos agregados\n");
+        return;
+    }
     do{
         if(aux->al.legajo == search){
             printf("\n------ ENCONTRADO ------\n");
@@ -99,7 +103,10 @@ void borrar(struct nodo **INI, long delete){
     struct nodo *prev = NULL;
     aux = *INI;
     int loop = 1;
-    
+    if(*INI == NULL){
+        printf("\nNo hay alumnos agregados\n");
+        return;
+    }
     do{
         if(aux->al.legajo == delete){
             printf("\nEncontro\n");
@@ -139,7 +146,10 @@ float promedios(struct nodo *INI){
     aux = INI;
     int loop = 1, aprobados = 0,recuperan = 0;
     float promedio = 0;
-
+    if(INI == NULL){
+        printf("\nNo hay alumnos agregados\n");
+        return 0;
+    }
     do{
         if(aux->al.notaP1 >= 4 && aux->al.notaP2 >= 4 && aux->al.notaProyecto >= 4){
             aprobados++;
@@ -237,6 +247,9 @@ struct nodo *carga(){
     FILE *fp;
 
     fp = fopen("datosAlumnos.txt", "r");
+    if(fp == NULL){
+        return NULL;
+    }
     while(fp != NULL){
         archivo[i] = fgetc(fp);
         i++;
