@@ -18,20 +18,41 @@ void carga(struct guarda *dato)
     scanf("%s", dato->apellido);
 }
 
-void ordenamiento(struct guarda *dato){
+void ordenamiento(struct guarda *dato, int f)
+{
     struct guarda aux;
-    int bandera = 0;int i=0;
+    int bandera = 1;
+    int i = 0;
+    int contador = 0;
+    printf("f:%d\n\n\n", f);
     do
     {
-        if((dato+i)->apellido[1]>(dato+i)->apellido[1]){
+        if (dato[i].apellido[0] > dato[i + 1].apellido[0])
+        {
             aux = dato[i];
-            dato[i] = dato[i+1];
-            dato[i+1] = aux;
+            dato[i] = dato[i + 1];
+            dato[i + 1] = aux;
+            printf("COntador:%d\n", contador);
+            contador++;
         }
+        printf("i:%d\n", i);
         i++;
-        if(i>5){bandera=0;}
+        if (i == f && contador == 0)
+        {
+            bandera = 0;
+        } 
+        if (i==f && contador != 0)
+        {
+            i=0;contador=0;
+        }
+        
     } while (bandera != 0);
-    
+    for (int j = 0; j < f - 1; j++)
+    {
+        printf("Legajo: %ld\n", dato[j].legajo);
+        printf("Nombre: %s\n", dato[j].nombre);
+        printf("Apellido: %s\n", dato[j].apellido);
+    }
 }
 
 int main()
@@ -50,12 +71,12 @@ int main()
         i++;
         j++;
     } while (datos[i - 1].legajo != 0);
-    ordenamiento(&datos);
-    for (int j = 0; j < i - 1; j++)
+    ordenamiento(datos, i);
+    /*for (int j = 0; j < i - 1; j++)
     {
         printf("Legajo: %ld\n", datos[j].legajo);
         printf("Nombre: %s\n", datos[j].nombre);
         printf("Apellido: %s\n", datos[j].apellido);
-    }
+    }*/
     return 0;
 }
