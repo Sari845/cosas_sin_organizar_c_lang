@@ -117,16 +117,17 @@ void deseaCambiar(unsigned char *octeto)
     char eleccion;
     printf("\nDesea cambiar ese valor? S/n");
     scanf(" %c", &eleccion);
-    if(eleccion == 'S' || eleccion == 's'){
+    if (eleccion == 'S' || eleccion == 's')
+    {
         printf("\nA que valor desea cambiar el octeto:");
         scanf(" %c", octeto);
         return;
     }
-    if(eleccion == 'N' || eleccion == 'n'){
+    if (eleccion == 'N' || eleccion == 'n')
+    {
         printf("\nOK\n");
         return;
     }
-
 }
 
 void leerOcteto(struct nodo *INI)
@@ -172,16 +173,16 @@ void leerOcteto(struct nodo *INI)
             }
         }
         if (aux->sig == NULL)
+        {
+            if (loop == 0)
             {
-                if (loop == 0)
-                {
-                    break;
-                }
-                printf("\nNo se encontro al alumno\n");
-                loop = 0;
-                return;
+                break;
             }
-            aux = aux->sig;
+            printf("\nNo se encontro al alumno\n");
+            loop = 0;
+            return;
+        }
+        aux = aux->sig;
     } while (loop = 1);
 }
 
