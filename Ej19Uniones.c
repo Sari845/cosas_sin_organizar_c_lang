@@ -7,10 +7,11 @@ char delimitador = '.';
 #define MENU 0
 #define AGREGAR 1
 #define BORRAR 2
-#define CAMBIAR_OCTETO 3
-#define LEER_OCTETO 4
-#define CAMBIAR_DELIMITADOR 5
-#define LEER_DELIMITADOR 6
+#define MOSTRAR_LISTAS 3
+#define CAMBIAR_OCTETO 4
+#define LEER_OCTETO 5
+#define CAMBIAR_DELIMITADOR 6
+#define LEER_DELIMITADOR 7
 
 struct campo
 {
@@ -48,7 +49,7 @@ ip *agregar(struct nodo *INI)
 {
     struct nodo *aux;
     aux = (struct nodo *)malloc(sizeof(struct nodo));
-    printf("aux:%x",aux);
+
     printf("\nDigite un numero de 0 a 255 para el primer octeto.:");
     scanf("%hhu", &aux->ip.o1.B);
     printf("\nDigite un numero de 0 a 255 para el segundo octeto:");
@@ -74,20 +75,39 @@ ip *agregar(struct nodo *INI)
     else
     {
         INI = aux;
-        INI->sig = NULL;
-        printf("INI:%x", INI);
+        // INI->sig = NULL;
     }
 }
 
-void imprimir(struct nodo *INI){
-    struct nodo *aux=INI;
+void imprimir(struct nodo *INI)
+{
+    struct nodo *aux = INI;
     printf("Listado:-------------------------------------");
-    while(aux->sig != NULL){
+    while (aux->sig != NULL)
+    {
         printf("\nIP:");
-        printf("%d%c%d%c%d%c%d", aux->ip.o1.B, delimitador ,aux->ip.o2.B, delimitador ,aux->ip.o3.B, delimitador, aux->ip.o4.B);
-        aux=aux->sig;
+        printf("%d%c%d%c%d%c%d", aux->ip.o1.B, delimitador, aux->ip.o2.B, delimitador, aux->ip.o3.B, delimitador, aux->ip.o4.B);
+        aux = aux->sig;
     }
-    printf("--------------------------------------------");
+
+    printf("\n---------------------------------------------");
+}
+
+char cambiarDelimitador()
+{
+    char del;
+    printf("Escriba el delmitador que desea usar para las direcciones:");
+    scanf("\n%c", &del);
+    return del;
+}
+
+void imprimirDelimitador(char delim){
+    printf("\nEl delimitador es: \"");
+    printf("%c\"", delim);
+}
+
+void cambiarOcteto(){
+    
 }
 
 void menu(struct nodo *INI)
@@ -100,11 +120,7 @@ void menu(struct nodo *INI)
         {
         case MENU:
             int choice;
-            printf("\nINI:%x", INI);
-            if(INI != NULL){
-            imprimir(INI);
-            }
-            printf("\nElija que desea hacer:\n1: Agregar una ip\n2: Borrar una ip \n3: Cambiar un octeto especifico de una ip\n4: Leer un octeto en especifico\n5: Cambiar el delimitador de las ips\n6: Leer el delimitador\n");
+            printf("\nElija que desea hacer:\n1: Agregar una ip\n2: Borrar una ip\n3: Mostrar todas las IPs\n4: Cambiar un octeto especifico de una ip\n5: Leer un octeto en especifico\n6: Cambiar el delimitador de las ips\n7: Leer el delimitador\n");
             scanf("%d", &choice);
             estado = choice;
             break;
@@ -118,7 +134,13 @@ void menu(struct nodo *INI)
             estado = 0;
             break;
 
+        case MOSTRAR_LISTAS:
+            imprimir(INI);
+            estado = 0;
+            break;
+
         case CAMBIAR_OCTETO:
+            cambiarOcteto();
             estado = 0;
             break;
 
@@ -127,10 +149,12 @@ void menu(struct nodo *INI)
             break;
 
         case CAMBIAR_DELIMITADOR:
+            delimitador = cambiarDelimitador();
             estado = 0;
             break;
 
         case LEER_DELIMITADOR:
+            imprimirDelimitador(delimitador);
             estado = 0;
             break;
         }
@@ -139,6 +163,8 @@ void menu(struct nodo *INI)
 
 int main()
 {
+
     struct nodo *INI = NULL;
+    INI = (struct nodo *)malloc(sizeof(struct nodo));
     menu(INI);
 }
